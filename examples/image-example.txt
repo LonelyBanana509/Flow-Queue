@@ -1,5 +1,5 @@
 PREFIX (paste into "Added before every prompt"):
-Game environment concept art.
+No text, clear image, high contrast, atmospheric
 
 SUFFIX (paste into "Added after every prompt"):
 rendered game style, unreal4 style
