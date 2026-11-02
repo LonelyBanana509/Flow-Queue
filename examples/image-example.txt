@@ -1,0 +1,19 @@
+PREFIX (paste into "Added before every prompt"):
+Game environment concept art.
+
+SUFFIX (paste into "Added after every prompt"):
+rendered game style, unreal4 style
+
+PROMPTS (paste into the Prompts box, one per line):
+[16:9, x2, pro]
+A misty pine forest at sunrise, soft golden light through the trees.
+A quiet fishing village on a cliff, painted in watercolour.
+A neon-lit street market at night after rain.
+[1:1]
+A ceramic teapot on a wooden table, studio lighting.
+A hand-drawn map of an imaginary island, aged paper.
+[9:16, x4]
+A tall waterfall in a green canyon, seen from below.
+[2.1] A lighthouse in a storm, dramatic clouds.
+[reset]
+A cosy reading nook with a window seat and warm lamp light.

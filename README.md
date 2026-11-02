@@ -42,6 +42,17 @@ Safety: the extension checks Flow's chip before each prompt and stops if the set
 - Chrome shows a "started debugging this browser" bar while a queue runs. That is how the extension sends trusted clicks and typing.
 - If Flow changes its page, use Test detection, Test settings now and the Diagnostics box to see what broke.
 
+## Examples
+The `examples` folder has one file for images and one for video. Each file has three parts: a prefix, a suffix and the prompts. Copy each part into its box in the panel (the file says which), then press Start.
+- `examples/image-example.txt`: image prompts with changing aspect ratio, count and model.
+- `examples/video-example.txt`: video (Ingredients) prompts, then a switch back to image mode.
+
+The prefix and suffix are joined to each prompt with a single space, so end your prompts with a full stop. With the example files, the first image prompt is sent as:
+
+`Game environment concept art. A misty pine forest at sunrise, soft golden light through the trees. rendered game style, unreal4 style`
+
+How the image example reads: the first line sets 16:9, x2, Pro for the three prompts under it. `[1:1]` changes only the ratio. `[9:16, x4]` changes ratio and count. `[2.1] ...` at the start of a prompt applies to that prompt only. `[reset]` returns to the panel values. Only paste the prompts part into the Prompts box: every line there that is not in brackets is sent as a prompt.
+
 ## Disclaimer
 Flow Queue is an independent project. It is not affiliated with, endorsed by, or sponsored by Google. "Flow", "Veo" and "Nano Banana" are names of Google products and belong to their owners; they are used here only to say what this extension works with.
 

@@ -1,0 +1,16 @@
+NOTE: Testing video uses up your Flow credits. Try one or two prompts first.
+
+PREFIX (paste into "Added before every prompt"):
+Game environment concept art.
+
+SUFFIX (paste into "Added after every prompt"):
+rendered game style, unreal4 style
+
+PROMPTS (paste into the Prompts box, one per line):
+[video, ingredients, 720p, 8s, x1, veo 3.1 fast]
+A paper boat drifting down a rain-filled gutter, slow camera follow.
+Clouds rolling over a mountain ridge in time-lapse.
+[9:16]
+A candle flame flickering in a dark room, close up.
+[image, 16:9, x2, pro]
+A watercolour sketch of the paper boat on a puddle.
