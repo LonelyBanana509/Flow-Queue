@@ -1,0 +1,62 @@
+{
+  "manifest_version": 3,
+  "name": "Flow Queue",
+  "version": "1.5.1",
+  "description": "Queue prompts in Google Flow, review the results next to each prompt, and download them all.",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "activeTab",
+    "scripting",
+    "debugger",
+    "sidePanel",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://flow.google/*",
+    "https://flow.google.com/*",
+    "https://labs.google/*",
+    "https://*.google.com/*",
+    "https://*.googleusercontent.com/*",
+    "https://*.googleapis.com/*",
+    "https://*.gstatic.com/*",
+    "https://*.googlevideo.com/*"
+  ],
+  "action": {
+    "default_title": "Open Flow Queue",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://flow.google/*",
+        "https://flow.google.com/*",
+        "https://labs.google/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "optional_host_permissions": [
+    "https://*/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

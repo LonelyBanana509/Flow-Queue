@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <header>
+    <h1>Flow Queue</h1>
+    <nav role="tablist">
+      <button id="tabQueue" role="tab" aria-selected="true">Queue</button>
+      <button id="tabReview" role="tab" aria-selected="false">Review <span id="reviewCount" class="pill"></span></button>
+    </nav>
+  </header>
+
+  <main id="viewQueue">
+    <section>
+      <h2>Prompts</h2>
+      <textarea id="prompts" rows="9" placeholder="One prompt per line"></textarea>
+      <input id="prefix" type="text" placeholder="Added before every prompt (optional)">
+      <input id="suffix" type="text" placeholder="Added after every prompt, e.g. style (optional)">
+      <div class="grid">
+        <label>Wait between prompts (s)<input id="delay" type="number" min="5" value="30"></label>
+        <label>Images per prompt<input id="perPrompt" type="number" min="1" max="8" value="2"></label>
+        <label>Start at prompt #<input id="startAt" type="number" min="1" value="1"></label>
+      </div>
+      <p id="count" class="note"></p>
+    </section>
+
+    <section>
+      <h2>Flow settings</h2>
+      <label class="check"><input id="applySettings" type="checkbox"> Set these in Flow before each prompt</label>
+      <div class="grid2">
+        <label>Aspect ratio
+          <select id="aspect"><option value="">Keep current</option><option>16:9</option><option>4:3</option><option>1:1</option><option>3:4</option><option>9:16</option></select>
+        </label>
+        <label>Image model
+          <select id="model"><option value="">Keep current</option><option value="nano banana pro">Nano Banana Pro</option><option value="nano banana 2 lite">Nano Banana 2 Lite</option><option value="nano banana 2.1">Nano Banana 2.1</option></select>
+        </label>
+      </div>
+      <div class="grid2">
+        <label>Mode
+          <select id="mode"><option value="">Keep current</option><option value="image">Image</option><option value="video">Video</option></select>
+        </label>
+        <label>Video model
+          <select id="vmodel"><option value="">Keep current</option><option value="omni 1.1 flash">Omni 1.1 Flash</option><option value="veo 3.1 lite">Veo 3.1 Lite</option><option value="veo 3.1 fast">Veo 3.1 Fast</option><option value="veo 3.1 quality">Veo 3.1 Quality</option></select>
+        </label>
+        <label>Video resolution (Omni only)
+          <select id="res"><option value="">Keep current</option><option value="720p">720p</option><option value="360p">360p</option></select>
+        </label>
+        <label>Video length (Omni only)
+          <select id="dur"><option value="">Keep current</option><option value="4s">4s</option><option value="6s">6s</option><option value="8s">8s</option><option value="10s">10s</option></select>
+        </label>
+      </div>
+      <label class="check"><input id="allowCredits" type="checkbox"> Allow credit use (stops if a setting costs credits)</label>
+      <div class="row"><button id="testSettings" class="ghost">Test settings now</button><span id="settingsState" class="tag"></span></div>
+      <details><summary>Diagnostics</summary><textarea id="settingsDebug" rows="8" readonly placeholder="Run Test settings now, then copy this"></textarea></details>
+      <details><summary>Video diagnostics</summary>
+        <div class="row"><button id="dumpVideo" class="ghost">Dump video tile</button><button id="dumpMenus" class="ghost">Dump menus</button></div>
+        <textarea id="videoDump" rows="10" readonly placeholder="Open Flow with a finished video tile on screen (and the settings panel open), press the button, then copy this. Do it again while a video is generating."></textarea>
+      </details>
+      <p class="note">Images per prompt sets Flow's x1-x4 when this is on. Change settings mid-queue with a line of its own, e.g. <code>[9:16, x4, pro]</code> (or <code>{...}</code>). It applies to every prompt after it until another settings line. <code>[reset]</code> goes back to the values above, or to what Flow was set to when you pressed Start. For one prompt only, put it in front: <code>[1:1] your prompt</code>. Video (Ingredients only): <code>[video, ingredients, 720p, 8s, x2, veo 3.1 fast]</code>. Models: omni, veo lite, veo fast, veo quality.</p>
+    </section>
+
+    <div class="row">
+      <button id="start" class="primary">Start queue</button>
+      <button id="resume" class="ghost" hidden>Resume</button>
+      <button id="stop" class="ghost">Stop</button>
+    </div>
+    <p id="status" class="status"></p>
+
+    <section>
+      <h2>Detection</h2>
+      <p class="note">The prompt box and generate button are found automatically.</p>
+      <div class="row">
+        <button id="detect" class="ghost">Test detection</button>
+        <span id="detectState" class="tag"></span>
+      </div>
+      <details>
+        <summary>Pick them manually</summary>
+        <div class="row">
+          <button id="pickPrompt" class="ghost">Pick prompt box</button>
+          <span id="promptState" class="tag">auto</span>
+        </div>
+        <div class="row">
+          <button id="pickButton" class="ghost">Pick generate button</button>
+          <span id="buttonState" class="tag">auto</span>
+        </div>
+        <button id="useAuto" class="ghost">Use auto-detect</button>
+      </details>
+    </section>
+  </main>
+
+  <main id="viewReview" hidden>
+    <div class="row bar">
+      <label class="check"><input id="zipVideos" type="checkbox" checked> Put videos in the zip too (split into parts of about 250 MB)</label>
+      <button id="downloadAll" class="primary">Download all (.zip)</button>
+      <button id="retryMissing" class="ghost">Retry missing</button>
+      <button id="clearResults" class="ghost">Clear</button>
+    </div>
+    <p id="reviewStatus" class="status"></p>
+    <div id="cards"></div>
+  </main>
+
+  <script src="panel.js"></script>
+</body>
+</html>

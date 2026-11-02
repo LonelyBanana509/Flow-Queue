@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>Flow Queue</h1>
+
+  <section>
+    <h2>Setup</h2>
+    <p class="note">The prompt box and generate button are found automatically.</p>
+    <div class="row">
+      <button id="detect" class="ghost">Test detection</button>
+      <span id="detectState" class="tag"></span>
+    </div>
+    <details>
+      <summary>Pick them manually</summary>
+      <div class="row">
+        <button id="pickPrompt" class="ghost">Pick prompt box</button>
+        <span id="promptState" class="tag">auto</span>
+      </div>
+      <div class="row">
+        <button id="pickButton" class="ghost">Pick generate button</button>
+        <span id="buttonState" class="tag">auto</span>
+      </div>
+      <button id="useAuto" class="ghost">Use auto-detect</button>
+    </details>
+  </section>
+
+  <section>
+    <h2>Prompts</h2>
+    <textarea id="prompts" rows="7" placeholder="One prompt per line"></textarea>
+    <input id="prefix" type="text" placeholder="Added before every prompt (optional)">
+    <input id="suffix" type="text" placeholder="Added after every prompt, e.g. style (optional)">
+    <div class="grid">
+      <label>Wait between images (s)<input id="delay" type="number" min="5" value="25"></label>
+      <label>Start at prompt #<input id="startAt" type="number" min="1" value="1"></label>
+    </div>
+    <p id="count" class="note"></p>
+  </section>
+
+  <div class="row">
+    <button id="start" class="primary">Start queue</button>
+    <button id="stop" class="ghost">Stop</button>
+  </div>
+  <p id="status" class="status"></p>
+
+  <script src="popup.js"></script>
+</body>
+</html>
